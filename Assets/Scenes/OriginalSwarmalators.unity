@@ -374,6 +374,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OSC: {fileID: 471684601}
   allAgentInfoAddress: /syncagents
+  instantiateAddress: /instantiate
+  addAddress: /add
+  removeAddress: /remove
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -773,7 +776,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AgentPrefab: {fileID: 5543257227575281370, guid: 8115cb2ca581b6d4db41722097bad3b1, type: 3}
-  Size: 100
+  Size: 3
   J: 1
   K: -0.75
   DeltaFactor: 1

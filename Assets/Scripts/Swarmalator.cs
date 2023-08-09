@@ -29,6 +29,10 @@ public class Swarmalator : SyncAgent
 
     // Start is called before the first frame update
     void Start(){
+        PopulateAgents();
+    }
+
+    public void PopulateAgents() {
         Agents = FindObjectsOfType<SyncAgent>().Where(s => s != this).ToArray();
     }
 

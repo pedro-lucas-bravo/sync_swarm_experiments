@@ -14,6 +14,9 @@ public class ExternalCommunicationManager : MonoBehaviour
 
     [Header("Addresses to send")]
     public string allAgentInfoAddress = "/syncagents"; //size, string[id0, phase0, x0, y0, z0, id0, phase1, x1, y1, z1....]
+    public string instantiateAddress = "/instantiate"; // N to instantiate
+    public string addAddress = "/add"; // N to add
+    public string removeAddress = "/remove"; // N to remove
 
     //[Header("Configurations")]
     //public int sleepMillisecondsOnReceiving = 0;
@@ -26,6 +29,9 @@ public class ExternalCommunicationManager : MonoBehaviour
     private void Start() {
         //Sender Messages
         allAgentInfoOutMessage_ = OSC.DefineMessageToClient(allAgentInfoAddress,2);
+        instantiateOutMessage_ = OSC.DefineMessageToClient(instantiateAddress, 1);
+        addOutMessage_ = OSC.DefineMessageToClient(addAddress, 1);
+        removeOutMessage_ = OSC.DefineMessageToClient(removeAddress, 1);
 
         //Receivers        
         //OSC.OnReceiveMessage += OnReceive;
@@ -46,6 +52,9 @@ public class ExternalCommunicationManager : MonoBehaviour
     }
 
     List<object> allAgentInfoOutMessage_;
+    List<object> instantiateOutMessage_;
+    List<object> addOutMessage_;
+    List<object> removeOutMessage_;
 
     float _testSensorValue;
 
@@ -86,8 +95,22 @@ public class ExternalCommunicationManager : MonoBehaviour
         }
     }
 
+    public void InstantiateAgent(int size) {
+        instantiateOutMessage_[0] = size;
+        OSC.SendMessageToClient(instantiateAddress);
+    }
+
+    public void AddAgent(int size) {
+        addOutMessage_[0] = size;
+        OSC.SendMessageToClient(addAddress);
+    }
+
+    public void RemoveAgent(int size) {
+        removeOutMessage_[0] = size;
+        OSC.SendMessageToClient(removeAddress);
+    }
 
 
     #endregion
-    
+
 }

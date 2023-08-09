@@ -17,31 +17,54 @@ public class MainSyncSwarm : MonoBehaviour
     public float DeltaFactor = 1f;
     public Transform reference;
 
+    public List<Swarmalator> Agents = new List<Swarmalator>();
+
     public static MainSyncSwarm Instance { get; private set; }
+
+    private int _lastSize;
 
     // Start is called before the first frame update
     void Awake(){
-        Instance = this;
-        for (int i = 0; i < Size; i++) {
-            var agent = Instantiate<Swarmalator>(AgentPrefab);
-            agent.ID = i + 1;
-            agent.J = J;
-            agent.K = K;
-            agent.name = "Agent_" + i;
-            agent.transform.SetParent(transform);
-            Agents.Add(agent);
-        }
+        Instance = this;        
+    }
+
+    private void Start() {
+        Instatiate(Size);
+        _lastSize = Size;
     }
 
     private void Update() {
+        //Update parameters per agent
         for (int i = 0; i < Agents.Count; i++) {
             Agents[i].J = J;
             Agents[i].K = K;
             Agents[i].DeltaFactor = DeltaFactor;
         }
+
+        //Transform reference update
         (var center, var normalPlane) = BestFitNormal(Agents.Select(a => a.Position));
         reference.position = center;
         reference.forward = normalPlane;
+
+        //Real-time instantiation
+        if (_lastSize != Size) {
+            Instatiate(Size);
+            _lastSize = Size;
+        }
+
+        //Add 1
+        if (Input.GetKeyDown(KeyCode.A)){
+            Size++;
+            _lastSize = Size;
+            Add(1);
+        }
+
+        //Remove 1
+        if (Input.GetKeyDown(KeyCode.R) && Size > 3) { //At least size to for right calculation of the reference
+            Size--;
+            _lastSize = Size;
+            Remove(1);
+        }
     }
 
     //(center, normalPlane)
@@ -80,5 +103,44 @@ public class MainSyncSwarm : MonoBehaviour
             return (pointAverage, new Vector3(xy * yz - xz * yy, xy * xz - yz * xx, det_z).normalized);
     }
 
-    public List<Swarmalator> Agents = new List<Swarmalator>();
+    public void Instatiate(int size) {
+        Remove(Agents.Count);
+        Add(size);
+        ExternalCommunicationManager.Instance.InstantiateAgent(size);
+    }
+
+    public void Add(int size) {
+        var init = Agents.Count;
+        for (int i = init; i < init + size; i++) {
+            var agent = Instantiate<Swarmalator>(AgentPrefab);
+            agent.ID = i + 1;
+            agent.J = J;
+            agent.K = K;
+            agent.name = "Agent_" + i;
+            agent.transform.SetParent(transform);
+            Agents.Add(agent);
+        }
+        AdjustIndexesAndNeighbours();
+        ExternalCommunicationManager.Instance.AddAgent(size);
+    }
+
+    public void Remove(int size) {
+        for (int i = 0; i < size; i++) {
+            var agentToRemove = Agents[0];
+            DestroyImmediate(agentToRemove.gameObject);
+            Agents.RemoveAt(0);
+        }
+        AdjustIndexesAndNeighbours();
+        ExternalCommunicationManager.Instance.RemoveAgent(size);
+    }
+
+    public void AdjustIndexesAndNeighbours() {
+        for (int i = 0; i < Agents.Count; i++) {
+            Agents[i].ID = i + 1;
+            Agents[i].name = "Agent_" + i;
+            Agents[i].PopulateAgents();
+        }
+    }
+
+    
 }
