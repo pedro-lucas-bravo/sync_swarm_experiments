@@ -13,19 +13,19 @@ public class ManualSwarmalator : SyncAgent
     private void Update() {
         if (Input.GetMouseButtonDown(0)) {
             float currentTime = Time.time;
-            float period = currentTime - lastClickTime;
-            frequency = 1f / period;
-            phase = currentTime * frequency;// phae in herz
-            Phase = 2 * Mathf.PI * phase;//phase in radians
+            //float period = currentTime - lastClickTime;
+            frequency = 1f;// period;
+            Phase = -2 * Mathf.PI * currentTime;//phase in radians, assuming starting in 0 and get phi from y = sin(2pi*t + phi) so that phi = -2pi * t
+            Phase = Phase % (2 * Mathf.PI);
+            Phase = Phase < 0 ? Phase + 2 * Mathf.PI : Phase;
             lastClickTime = currentTime;
         }
 
-        var pulse = Mathf.Sin(2 * Mathf.PI * (frequency * Time.time + phase));
-        var color = Color.red;
+        var pulse = Mathf.Sin(2 * Mathf.PI *frequency * Time.time + Phase);
+        var color = Color.HSVToRGB(Mathf.InverseLerp(0, 2 * Mathf.PI, Phase), 1, 1);
         material_.color = Color.Lerp(color, Color.black, Mathf.InverseLerp(-1f, 1f, pulse));
     }
 
     float lastClickTime;
     float frequency = 1;
-    float phase = 0;
 }

@@ -60,7 +60,7 @@ public class Swarmalator : SyncAgent
         float Oi = 0;
         for (int j = 0; j < Agents.Length; j++) {
             var Xji = Agents[j].Position - Position;
-            var Oji = Agents[j].Phase - Phase;
+            var Oji = Agents[j].Phase - Phase + Random.Range(0, 0.0001f);
             Xi += Xji / Xji.magnitude * (1 + J * Mathf.Cos(Oji)) - Xji / Mathf.Pow(Xji.magnitude, 3);
             Oi += Mathf.Sin(Oji) / Xji.magnitude;
         }

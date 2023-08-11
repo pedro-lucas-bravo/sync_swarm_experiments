@@ -1,7 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 public class MainSyncSwarm : MonoBehaviour
 {
@@ -17,7 +16,7 @@ public class MainSyncSwarm : MonoBehaviour
     public float DeltaFactor = 1f;
     public Transform reference;
 
-    public List<Swarmalator> Agents = new List<Swarmalator>();
+    public List<SyncAgent> Agents = new List<SyncAgent>();
 
     public static MainSyncSwarm Instance { get; private set; }
 
@@ -30,15 +29,19 @@ public class MainSyncSwarm : MonoBehaviour
 
     private void Start() {
         Instatiate(Size);
+        Agents.AddRange(FindObjectsOfType<ManualSwarmalator>().AsEnumerable());
+        AdjustIndexesAndNeighbours();
         _lastSize = Size;
     }
 
     private void Update() {
         //Update parameters per agent
         for (int i = 0; i < Agents.Count; i++) {
-            Agents[i].J = J;
-            Agents[i].K = K;
-            Agents[i].DeltaFactor = DeltaFactor;
+            if (Agents[i] is Swarmalator agent) {
+                agent.J = J;
+                agent.K = K;
+                agent.DeltaFactor = DeltaFactor;
+            }
         }
 
         //Transform reference update
@@ -61,9 +64,11 @@ public class MainSyncSwarm : MonoBehaviour
 
         //Remove 1
         if (Input.GetKeyDown(KeyCode.R) && Size > 3) { //At least size to for right calculation of the reference
-            Size--;
-            _lastSize = Size;
-            Remove(1);
+            if (!(Agents.All(a => a is ManualSwarmalator))) {
+                Size--;
+                _lastSize = Size;
+                Remove(1);
+            }
         }
     }
 
@@ -125,10 +130,16 @@ public class MainSyncSwarm : MonoBehaviour
     }
 
     public void Remove(int size) {
+        var indexToRemove = 0;
         for (int i = 0; i < size; i++) {
-            var agentToRemove = Agents[0];
+            var agentToRemove = Agents[indexToRemove];
+            if (agentToRemove is ManualSwarmalator) {
+                indexToRemove++;
+                i--;
+                continue;
+            }
             DestroyImmediate(agentToRemove.gameObject);
-            Agents.RemoveAt(0);
+            Agents.RemoveAt(indexToRemove);
         }
         AdjustIndexesAndNeighbours();
         ExternalCommunicationManager.Instance.RemoveAgent(size);
@@ -138,7 +149,9 @@ public class MainSyncSwarm : MonoBehaviour
         for (int i = 0; i < Agents.Count; i++) {
             Agents[i].ID = i + 1;
             Agents[i].name = "Agent_" + i;
-            Agents[i].PopulateAgents();
+            if (Agents[i] is Swarmalator agent) {
+                agent.PopulateAgents();
+            }
         }
     }
 
