@@ -22,9 +22,7 @@ public class Swarmalator : SyncAgent
 
 
     protected override void Awake() {
-        base.Awake();
-        Phase = Random.Range(0, 2 * Mathf.PI);
-        trans_.position = Random.insideUnitSphere * Mathf.PI;        
+        base.Awake();               
     }
 
     // Start is called before the first frame update
@@ -46,7 +44,7 @@ public class Swarmalator : SyncAgent
         Phase = Phase < 0 ? Phase + 2 * Mathf.PI : Phase;
         var color = Color.HSVToRGB(Mathf.InverseLerp(0, 2 * Mathf.PI, Phase), 1, 1);
         var pulse = amplitude * Mathf.Sin(2 * Mathf.PI * frequency * Time.fixedTime + Phase);
-        material_.color = Color.Lerp(color, Color.black, Mathf.InverseLerp(-amplitude, amplitude, pulse));
+        material_.color = Color.Lerp(color, Color.black, Mathf.InverseLerp(amplitude, -amplitude, pulse));
     }
 
     void Update() {

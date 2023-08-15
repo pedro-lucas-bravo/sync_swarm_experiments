@@ -24,6 +24,8 @@ public class ExternalCommunicationManager : MonoBehaviour
     public string deltaFactorAddress = "/deltafactor";
     public string addRecvAddress = "/add"; // N to add
     public string removeRecvAddress = "/remove"; // N to remove
+    public string addManualRecvAddress = "/addmanual"; // N to add
+    public string removeManualRecvAddress = "/removemanual"; // N to remove
 
     //[Header("Configurations")]
     //public int sleepMillisecondsOnReceiving = 0;
@@ -58,6 +60,9 @@ public class ExternalCommunicationManager : MonoBehaviour
         SendAgentsInfo(deltaTime);
         AddRecvAgent();
         RemoveRecvAgent();
+        AddManualRecvAgent();
+        RemoveManualRecvAgent();
+
     }
 
     List<object> allAgentInfoOutMessage_;
@@ -144,7 +149,12 @@ public class ExternalCommunicationManager : MonoBehaviour
         if (address == removeRecvAddress && !_RemoveAgentFlag) {
             _RemoveAgentFlag = true;
         }
-
+        if (address == addManualRecvAddress && !_AddManualAgentFlag) {
+            _AddManualAgentFlag = true;
+        }
+        if (address == removeManualRecvAddress && !_RemoveManualAgentFlag) {
+            _RemoveManualAgentFlag = true;
+        }
     }
 
     private bool _AddAgentFlag;
@@ -160,6 +170,22 @@ public class ExternalCommunicationManager : MonoBehaviour
         if (_RemoveAgentFlag) {
             MainSyncSwarm.Instance.RemoveOne();
             _RemoveAgentFlag = false;
+        }
+    }
+
+    private bool _AddManualAgentFlag;
+    private void AddManualRecvAgent() { //TODO: Just one for now
+        if (_AddManualAgentFlag) {
+            MainSyncSwarm.Instance.Add(1, true);
+            _AddManualAgentFlag = false;
+        }
+    }
+
+    private bool _RemoveManualAgentFlag;
+    private void RemoveManualRecvAgent() { //TODO: Just one for now
+        if (_RemoveManualAgentFlag) {
+            MainSyncSwarm.Instance.Remove(1, true);
+            _RemoveManualAgentFlag = false;
         }
     }
 

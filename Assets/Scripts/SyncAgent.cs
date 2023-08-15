@@ -13,6 +13,8 @@ public abstract class SyncAgent : MonoBehaviour
     protected virtual void Awake() {
         trans_ = transform;
         material_ = GetComponent<Renderer>().material;
+        Phase = Random.Range(0, 2 * Mathf.PI);
+        trans_.position = Random.insideUnitSphere * Mathf.PI * 0.5f;
     }
 
     protected Transform trans_;

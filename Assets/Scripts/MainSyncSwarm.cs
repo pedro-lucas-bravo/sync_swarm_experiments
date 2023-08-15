@@ -10,6 +10,7 @@ public class MainSyncSwarm : MonoBehaviour
         "\na Splintered phase wave (J, K) = (1, −0.1), " +
         "\nb Active phase wave (J, K) = (1, −0.75)")]
     public Swarmalator AgentPrefab;
+    public ManualSwarmalator ManualAgentPrefab;
     public int Size = 10;
     public float J = 0.1f;
     public float K = 1.0f;
@@ -122,13 +123,19 @@ public class MainSyncSwarm : MonoBehaviour
         }
     }
 
-    private void Add(int size) {
+    public void Add(int size, bool isManual = false) {
         var init = Agents.Count;
         for (int i = init; i < init + size; i++) {
-            var agent = Instantiate<Swarmalator>(AgentPrefab);
-            agent.ID = i + 1;
-            agent.J = J;
-            agent.K = K;
+            SyncAgent agent;
+            if (!isManual) {
+                var Swagent = Instantiate<Swarmalator>(AgentPrefab);
+                Swagent.J = J;
+                Swagent.K = K;
+                agent = Swagent;
+            } else { 
+                agent = Instantiate<ManualSwarmalator>(ManualAgentPrefab);
+            }
+            agent.ID = i + 1;            
             agent.name = "Agent_" + i;
             agent.transform.SetParent(transform);
             Agents.Add(agent);
@@ -137,11 +144,18 @@ public class MainSyncSwarm : MonoBehaviour
         ExternalCommunicationManager.Instance.AddAgent(size);
     }
 
-    private void Remove(int size) {
+    public void Remove(int size, bool isManual = false) {
         var indexToRemove = 0;
         for (int i = 0; i < size; i++) {
+            if (i >= Agents.Count || indexToRemove >= Agents.Count)
+                break;
             var agentToRemove = Agents[indexToRemove];
-            if (agentToRemove is ManualSwarmalator) {
+            if (!isManual && agentToRemove is ManualSwarmalator) {
+                indexToRemove++;
+                i--;
+                continue;
+            }
+            if (isManual && agentToRemove is Swarmalator) {
                 indexToRemove++;
                 i--;
                 continue;
