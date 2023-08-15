@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class MouseGrabber : MonoBehaviour
 {
     public string TargetTag;
     public bool IsDragging => isDragging;
+
+    public Action<GameObject> OnRightClickSelection;
 
     private bool isDragging = false;
     private Vector3 originalPosition;
@@ -14,6 +17,13 @@ public class MouseGrabber : MonoBehaviour
     private Plane dragPlane;
 
     private void Update() {
+        if (Input.GetMouseButtonDown(1)) {
+            var obj = GetCubeUnderMouse(out _);
+            if (obj != null && OnRightClickSelection != null) {
+                OnRightClickSelection(obj);
+            }
+        }
+
         if (Input.GetMouseButtonDown(0)) {
             if (!isDragging) {
                 // Check if we are clicking on a cube
