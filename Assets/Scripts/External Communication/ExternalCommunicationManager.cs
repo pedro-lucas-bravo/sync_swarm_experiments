@@ -15,8 +15,15 @@ public class ExternalCommunicationManager : MonoBehaviour
     [Header("Addresses to send")]
     public string allAgentInfoAddress = "/syncagents"; //size, string[id0, phase0, x0, y0, z0, id0, phase1, x1, y1, z1....]
     public string instantiateAddress = "/instantiate"; // N to instantiate
-    public string addAddress = "/add"; // N to add
-    public string removeAddress = "/remove"; // N to remove
+    public string addSendAddress = "/add"; // N to add
+    public string removeSendAddress = "/remove"; // N to remove
+
+    [Header("Addresses to receive")]
+    public string JparamAddress = "/J";
+    public string KparamAddress = "/K";
+    public string deltaFactorAddress = "/deltafactor";
+    public string addRecvAddress = "/add"; // N to add
+    public string removeRecvAddress = "/remove"; // N to remove
 
     //[Header("Configurations")]
     //public int sleepMillisecondsOnReceiving = 0;
@@ -30,25 +37,27 @@ public class ExternalCommunicationManager : MonoBehaviour
         //Sender Messages
         allAgentInfoOutMessage_ = OSC.DefineMessageToClient(allAgentInfoAddress,2);
         instantiateOutMessage_ = OSC.DefineMessageToClient(instantiateAddress, 1);
-        addOutMessage_ = OSC.DefineMessageToClient(addAddress, 1);
-        removeOutMessage_ = OSC.DefineMessageToClient(removeAddress, 1);
+        addOutMessage_ = OSC.DefineMessageToClient(addSendAddress, 1);
+        removeOutMessage_ = OSC.DefineMessageToClient(removeSendAddress, 1);
 
         //Receivers        
-        //OSC.OnReceiveMessage += OnReceive;
+        OSC.OnReceiveMessage += OnReceive;
 
         //SetSleepMillisecons(sleepMillisecondsOnReceiving);
     }
 
     private void OnDestroy() {
-        //if (OSC != null) {
-        //    OSC.OnReceiveMessage -= OnReceive;
-        //}
+        if (OSC != null) {
+            OSC.OnReceiveMessage -= OnReceive;
+        }
         Instance = null;
     }
 
     private void LateUpdate() {
         var deltaTime = Time.deltaTime;
-        SendStimergicObjectsInfo(deltaTime);
+        SendAgentsInfo(deltaTime);
+        AddRecvAgent();
+        RemoveRecvAgent();
     }
 
     List<object> allAgentInfoOutMessage_;
@@ -63,7 +72,7 @@ public class ExternalCommunicationManager : MonoBehaviour
     StringBuilder stringAgentsInfo = new StringBuilder();
     float timerAgentsInfoSend_ = 0;
     float periodInfoSend_ = 0;
-    public void SendStimergicObjectsInfo(float deltaTime) {
+    public void SendAgentsInfo(float deltaTime) {
         if (OSCHandler.Instance.Clients.Any()) {
             timerAgentsInfoSend_ += deltaTime;
             if (timerAgentsInfoSend_ >= periodInfoSend_) {
@@ -105,17 +114,54 @@ public class ExternalCommunicationManager : MonoBehaviour
     public void AddAgent(int size) {
         if (OSCHandler.Instance.Clients.Any()) {
             addOutMessage_[0] = size;
-            OSC.SendMessageToClient(addAddress);
+            OSC.SendMessageToClient(addSendAddress);
         }
     }
 
     public void RemoveAgent(int size) {
         if (OSCHandler.Instance.Clients.Any()) {
             removeOutMessage_[0] = size;
-            OSC.SendMessageToClient(removeAddress);
+            OSC.SendMessageToClient(removeSendAddress);
         }
     }
 
     #endregion
 
+    #region Receivers
+    private void OnReceive(string address, List<object> values, OSCPacket packet) {
+        if (address == JparamAddress) {
+            MainSyncSwarm.Instance.J = (float)values[0];
+        }
+        if (address == KparamAddress) {
+            MainSyncSwarm.Instance.K = (float)values[0];
+        }
+        if (address == deltaFactorAddress) {
+            MainSyncSwarm.Instance.DeltaFactor = (float)values[0];
+        }
+        if (address == addRecvAddress && !_AddAgentFlag) {
+            _AddAgentFlag = true;
+        }
+        if (address == removeRecvAddress && !_RemoveAgentFlag) {
+            _RemoveAgentFlag = true;
+        }
+
+    }
+
+    private bool _AddAgentFlag;
+    private void AddRecvAgent() { //TODO: Just one for now
+        if (_AddAgentFlag) {
+            MainSyncSwarm.Instance.AddOne();
+            _AddAgentFlag = false;
+        }
+    }
+
+    private bool _RemoveAgentFlag;
+    private void RemoveRecvAgent() { //TODO: Just one for now
+        if (_RemoveAgentFlag) {
+            MainSyncSwarm.Instance.RemoveOne();
+            _RemoveAgentFlag = false;
+        }
+    }
+
+    #endregion
 }

@@ -57,18 +57,12 @@ public class MainSyncSwarm : MonoBehaviour
 
         //Add 1
         if (Input.GetKeyDown(KeyCode.A)){
-            Size++;
-            _lastSize = Size;
-            Add(1);
+            AddOne();
         }
 
         //Remove 1
-        if (Input.GetKeyDown(KeyCode.R) && Size > 3) { //At least size to for right calculation of the reference
-            if (!(Agents.All(a => a is ManualSwarmalator))) {
-                Size--;
-                _lastSize = Size;
-                Remove(1);
-            }
+        if (Input.GetKeyDown(KeyCode.R)) { //At least size to for right calculation of the reference
+            RemoveOne();
         }
     }
 
@@ -114,7 +108,21 @@ public class MainSyncSwarm : MonoBehaviour
         ExternalCommunicationManager.Instance.InstantiateAgent(size);
     }
 
-    public void Add(int size) {
+    public void AddOne() {
+        Size++;
+        _lastSize = Size;
+        Add(1);
+    }
+
+    public void RemoveOne() {
+        if (Size > 3 && !Agents.All(a => a is ManualSwarmalator)) {//At least size to for right calculation of the reference
+            Size--;
+            _lastSize = Size;
+            Remove(1);
+        }
+    }
+
+    private void Add(int size) {
         var init = Agents.Count;
         for (int i = init; i < init + size; i++) {
             var agent = Instantiate<Swarmalator>(AgentPrefab);
@@ -129,7 +137,7 @@ public class MainSyncSwarm : MonoBehaviour
         ExternalCommunicationManager.Instance.AddAgent(size);
     }
 
-    public void Remove(int size) {
+    private void Remove(int size) {
         var indexToRemove = 0;
         for (int i = 0; i < size; i++) {
             var agentToRemove = Agents[indexToRemove];
