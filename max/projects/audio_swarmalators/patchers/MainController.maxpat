@@ -1166,7 +1166,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 190.0, 212.0, 147.0, 36.0 ],
-									"text" : "24 0.249077 278.124 2.76 -0.183 1.601"
+									"text" : "18 0.507227 322.429 0.899 0.204 0.618"
 								}
 
 							}
@@ -1795,7 +1795,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 247.0, 288.0, 50.0, 22.0 ],
-									"text" : "76"
+									"text" : "82"
 								}
 
 							}
@@ -2416,12 +2416,13 @@
 , 			{
 				"box" : 				{
 					"id" : "obj-53",
+					"linecount" : 2,
 					"maxclass" : "message",
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 664.5, 626.899996876716614, 80.0, 22.0 ],
-					"text" : "0 2 4 7 9"
+					"patching_rect" : [ 664.5, 626.899996876716614, 80.0, 36.0 ],
+					"text" : "0 2 3 5 7 8 10"
 				}
 
 			}
