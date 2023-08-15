@@ -96,20 +96,25 @@ public class ExternalCommunicationManager : MonoBehaviour
     }
 
     public void InstantiateAgent(int size) {
-        instantiateOutMessage_[0] = size;
-        OSC.SendMessageToClient(instantiateAddress);
+        if (OSCHandler.Instance.Clients.Any()) {
+            instantiateOutMessage_[0] = size;
+            OSC.SendMessageToClient(instantiateAddress);
+        }
     }
 
     public void AddAgent(int size) {
-        addOutMessage_[0] = size;
-        OSC.SendMessageToClient(addAddress);
+        if (OSCHandler.Instance.Clients.Any()) {
+            addOutMessage_[0] = size;
+            OSC.SendMessageToClient(addAddress);
+        }
     }
 
     public void RemoveAgent(int size) {
-        removeOutMessage_[0] = size;
-        OSC.SendMessageToClient(removeAddress);
+        if (OSCHandler.Instance.Clients.Any()) {
+            removeOutMessage_[0] = size;
+            OSC.SendMessageToClient(removeAddress);
+        }
     }
-
 
     #endregion
 
