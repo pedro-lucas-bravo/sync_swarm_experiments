@@ -147,7 +147,7 @@ public class MainSyncSwarm : MonoBehaviour
     public void Remove(int size, bool isManual = false) {
         var indexToRemove = 0;
         for (int i = 0; i < size; i++) {
-            if (i >= Agents.Count || indexToRemove >= Agents.Count)
+            if (indexToRemove >= Agents.Count)
                 break;
             var agentToRemove = Agents[indexToRemove];
             if (!isManual && agentToRemove is ManualSwarmalator) {

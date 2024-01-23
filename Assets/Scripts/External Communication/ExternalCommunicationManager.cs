@@ -24,6 +24,7 @@ public class ExternalCommunicationManager : MonoBehaviour
     public string deltaFactorAddress = "/deltafactor";
     public string addRecvAddress = "/add"; // N to add
     public string removeRecvAddress = "/remove"; // N to remove
+    public string resizeRecvAddress = "/resize"; // N to resize
     public string addManualRecvAddress = "/addmanual"; // N to add
     public string removeManualRecvAddress = "/removemanual"; // N to remove
 
@@ -154,6 +155,9 @@ public class ExternalCommunicationManager : MonoBehaviour
         }
         if (address == removeManualRecvAddress && !_RemoveManualAgentFlag) {
             _RemoveManualAgentFlag = true;
+        }
+        if (address == resizeRecvAddress) {
+            MainSyncSwarm.Instance.Size = (int)values[0];
         }
     }
 
