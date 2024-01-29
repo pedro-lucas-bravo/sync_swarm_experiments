@@ -65,6 +65,16 @@ public class MainSyncSwarm : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R)) { //At least size to for right calculation of the reference
             RemoveOne();
         }
+
+        //Add manual swarmalator
+        if (Input.GetKeyDown(KeyCode.M)) {
+            Add(1, true);
+        }
+
+        //Remove manual swarmalator
+        if (Input.GetKeyDown(KeyCode.L)) {
+            Remove(1, true);
+        }       
     }
 
     //(center, normalPlane)
