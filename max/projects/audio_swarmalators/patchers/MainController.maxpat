@@ -386,7 +386,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 59.0, 106.0, 640.0, 480.0 ],
+						"rect" : [ 459.0, 195.0, 640.0, 480.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -422,7 +422,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 142.0, 283.0, 150.0, 34.0 ],
+									"patching_rect" : [ 142.0, 251.888889908790588, 150.0, 34.0 ],
 									"text" : "dB Number between -30 and -15"
 								}
 
@@ -433,8 +433,8 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 142.0, 23.0, 205.0, 20.0 ],
-									"text" : "Agents Number between 3 and 100"
+									"patching_rect" : [ 142.0, 40.03703647851944, 205.0, 20.0 ],
+									"text" : "N Agents between 3 and 100"
 								}
 
 							}
@@ -446,7 +446,7 @@
 									"maxclass" : "outlet",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 103.0, 283.0, 30.0, 30.0 ]
+									"patching_rect" : [ 103.0, 251.888889908790588, 30.0, 30.0 ]
 								}
 
 							}
@@ -459,19 +459,7 @@
 									"numinlets" : 0,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 103.0, 18.0, 30.0, 30.0 ]
-								}
-
-							}
-, 							{
-								"box" : 								{
-									"id" : "obj-257",
-									"maxclass" : "message",
-									"numinlets" : 2,
-									"numoutlets" : 1,
-									"outlettype" : [ "" ],
-									"patching_rect" : [ 223.0, 234.600003123283386, 50.0, 22.0 ],
-									"text" : "1."
+									"patching_rect" : [ 103.0, 35.03703647851944, 30.0, 30.0 ]
 								}
 
 							}
@@ -482,7 +470,7 @@
 									"numinlets" : 6,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 103.0, 234.600003123283386, 105.0, 22.0 ],
+									"patching_rect" : [ 103.0, 218.303707361221313, 105.0, 22.0 ],
 									"text" : "scale 1. 0. -15 -30"
 								}
 
@@ -494,7 +482,7 @@
 									"numinlets" : 6,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 103.0, 67.0, 97.0, 22.0 ],
+									"patching_rect" : [ 103.0, 75.148147881031036, 97.0, 22.0 ],
 									"text" : "scale 3 100 0. 1."
 								}
 
@@ -525,15 +513,6 @@
 , 							{
 								"patchline" : 								{
 									"destination" : [ "obj-255", 0 ],
-									"order" : 1,
-									"source" : [ "obj-249", 0 ]
-								}
-
-							}
-, 							{
-								"patchline" : 								{
-									"destination" : [ "obj-257", 1 ],
-									"order" : 0,
 									"source" : [ "obj-249", 0 ]
 								}
 
