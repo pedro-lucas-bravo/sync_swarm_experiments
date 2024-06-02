@@ -3,14 +3,14 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 5,
-			"revision" : 6,
+			"minor" : 2,
+			"revision" : 1,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, -995.0, 1458.0, 921.0 ],
+		"rect" : [ 34.0, 77.0, 1111.0, 713.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -39,6 +39,18 @@
 		"subpatcher_template" : "",
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
+				"box" : 				{
+					"id" : "obj-147",
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 263.0, 760.0, 45.0, 22.0 ],
+					"text" : "open 2"
+				}
+
+			}
+, 			{
 				"box" : 				{
 					"id" : "obj-278",
 					"maxclass" : "newobj",
@@ -367,8 +379,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 5,
-							"revision" : 6,
+							"minor" : 2,
+							"revision" : 1,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -410,7 +422,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 2434.114410638809204, 704.588129043579102, 53.0, 48.0 ],
-									"presentation_linecount" : 3,
 									"text" : "Shift Main Knob"
 								}
 
@@ -423,7 +434,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 2311.114410638809204, 713.588129043579102, 53.0, 34.0 ],
-									"presentation_linecount" : 2,
 									"text" : "Main Knob"
 								}
 
@@ -532,7 +542,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 1987.419492959976196, 595.503386735916138, 53.0, 34.0 ],
-									"presentation_linecount" : 2,
 									"text" : "Toggle Yellow"
 								}
 
@@ -581,7 +590,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 1807.597460031509399, 556.774572610855103, 53.0, 34.0 ],
-									"presentation_linecount" : 2,
 									"text" : "Toggle Green"
 								}
 
@@ -630,7 +638,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 1691.75, 433.299993753433228, 53.0, 34.0 ],
-									"presentation_linecount" : 2,
 									"text" : "Slider 4 (0-127)"
 								}
 
@@ -643,7 +650,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 1562.75, 433.299993753433228, 53.0, 34.0 ],
-									"presentation_linecount" : 2,
 									"text" : "Slider 3 (0-127)"
 								}
 
@@ -680,7 +686,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 1442.75, 433.299993753433228, 53.0, 34.0 ],
-									"presentation_linecount" : 2,
 									"text" : "Slider 2 (0-127)"
 								}
 
@@ -693,7 +698,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 1313.75, 433.299993753433228, 53.0, 34.0 ],
-									"presentation_linecount" : 2,
 									"text" : "Slider 1 (0-127)"
 								}
 
@@ -1758,7 +1762,6 @@
 					}
 ,
 					"patching_rect" : [ 1037.25, 90.100003123283386, 155.5, 22.0 ],
-					"presentation_linecount" : 2,
 					"saved_object_attributes" : 					{
 						"description" : "",
 						"digest" : "",
@@ -1778,7 +1781,6 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 1180.75, 22.849995315074921, 150.0, 34.0 ],
-					"presentation_linecount" : 2,
 					"text" : "1. SELECTTHE CONFIGURATION"
 				}
 
@@ -1965,8 +1967,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 5,
-							"revision" : 6,
+							"minor" : 2,
+							"revision" : 1,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -2222,8 +2224,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 5,
-							"revision" : 6,
+							"minor" : 2,
+							"revision" : 1,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -3867,8 +3869,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 5,
-							"revision" : 6,
+							"minor" : 2,
+							"revision" : 1,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -5123,8 +5125,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 5,
-							"revision" : 6,
+							"minor" : 2,
+							"revision" : 1,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -5329,14 +5331,14 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 5,
-							"revision" : 6,
+							"minor" : 2,
+							"revision" : 1,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 59.0, 107.0, 640.0, 480.0 ],
+						"rect" : [ 59.0, 106.0, 640.0, 480.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -5468,8 +5470,8 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 5,
-							"revision" : 6,
+							"minor" : 2,
+							"revision" : 1,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -5641,14 +5643,14 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 5,
-							"revision" : 6,
+							"minor" : 2,
+							"revision" : 1,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 59.0, 107.0, 640.0, 480.0 ],
+						"rect" : [ 59.0, 106.0, 640.0, 480.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -5898,7 +5900,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 190.0, 212.0, 147.0, 36.0 ],
-									"text" : "42 0.601606 329.676 0.939 -0.197 0.21"
+									"text" : "3 0.634392 162.665 1.443 0.34 -0.186"
 								}
 
 							}
@@ -6360,14 +6362,14 @@
 						"fileversion" : 1,
 						"appversion" : 						{
 							"major" : 8,
-							"minor" : 5,
-							"revision" : 6,
+							"minor" : 2,
+							"revision" : 1,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 41.0, 84.0, 787.0, 570.0 ],
+						"rect" : [ -25559.0, -25516.0, 787.0, 570.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -6395,6 +6397,7 @@
 						"style" : "",
 						"subpatcher_template" : "",
 						"assistshowspatchername" : 0,
+						"visible" : 1,
 						"boxes" : [ 							{
 								"box" : 								{
 									"id" : "obj-12",
@@ -6535,7 +6538,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
 									"patching_rect" : [ 247.0, 288.0, 50.0, 22.0 ],
-									"text" : "58"
+									"text" : "97"
 								}
 
 							}
@@ -6870,7 +6873,7 @@
 					"numoutlets" : 2,
 					"outlettype" : [ "", "bang" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 1250.0, 775.0, 50.0, 22.0 ]
+					"patching_rect" : [ 1307.0, 779.0, 50.0, 22.0 ]
 				}
 
 			}
@@ -6989,7 +6992,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 1250.0, 804.0, 69.0, 22.0 ],
+					"patching_rect" : [ 1307.0, 808.0, 69.0, 22.0 ],
 					"text" : "open $1"
 				}
 
@@ -7050,8 +7053,8 @@
 					"numinlets" : 4,
 					"numoutlets" : 1,
 					"outlettype" : [ "multichannelsignal" ],
-					"patching_rect" : [ 982.0, 775.0, 251.0, 22.0 ],
-					"text" : "mc.poly~ RhythmPatternsAudioAgent.maxpat"
+					"patching_rect" : [ 982.0, 779.0, 315.0, 22.0 ],
+					"text" : "mc.poly~ RhythmPatternsAudioAgent.maxpat @parallel 1"
 				}
 
 			}
@@ -7156,12 +7159,13 @@
 , 			{
 				"box" : 				{
 					"id" : "obj-53",
+					"linecount" : 2,
 					"maxclass" : "message",
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 554.5, 742.899996876716614, 80.0, 22.0 ],
-					"text" : "0 3 5 7 10"
+					"patching_rect" : [ 554.5, 742.899996876716614, 80.0, 36.0 ],
+					"text" : "0 2 3 5 7 8 10"
 				}
 
 			}
@@ -7340,8 +7344,8 @@
 					"numinlets" : 7,
 					"numoutlets" : 1,
 					"outlettype" : [ "multichannelsignal" ],
-					"patching_rect" : [ 180.0, 809.899996876716614, 192.0, 22.0 ],
-					"text" : "mc.poly~ SyncAudioAgent.maxpat"
+					"patching_rect" : [ 181.25, 809.899996876716614, 256.0, 22.0 ],
+					"text" : "mc.poly~ SyncAudioAgent.maxpat @parallel 1"
 				}
 
 			}
@@ -7969,6 +7973,13 @@
 				"patchline" : 				{
 					"destination" : [ "obj-197", 0 ],
 					"source" : [ "obj-144", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-3", 0 ],
+					"source" : [ "obj-147", 0 ]
 				}
 
 			}
@@ -9053,7 +9064,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-3", 0 ],
-					"midpoints" : [ 61.5, 790.899996876716614, 189.5, 790.899996876716614 ],
+					"midpoints" : [ 61.5, 790.899996876716614, 190.75, 790.899996876716614 ],
 					"order" : 0,
 					"source" : [ "obj-31", 0 ]
 				}
@@ -9529,7 +9540,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-47", 0 ],
-					"order" : 0,
+					"order" : 1,
 					"source" : [ "obj-82", 0 ]
 				}
 
@@ -9537,7 +9548,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-69", 2 ],
-					"order" : 1,
+					"order" : 0,
 					"source" : [ "obj-82", 0 ]
 				}
 
@@ -9665,29 +9676,8 @@
 		}
 ,
 		"dependency_cache" : [ 			{
-				"name" : "EuclideanRhythmsGen.maxpat",
-				"bootpath" : "~/Documents/Repositories/sync_swarm_experiments/max/projects/audio_swarmalators/patchers",
-				"patcherrelativepath" : ".",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "RhythmPatternsAudioAgent.maxpat",
-				"bootpath" : "~/Documents/Repositories/sync_swarm_experiments/max/projects/audio_swarmalators/patchers",
-				"patcherrelativepath" : ".",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "SyncAgentsExtractor.js",
-				"bootpath" : "~/Documents/Repositories/sync_swarm_experiments/max/projects/audio_swarmalators/code",
-				"patcherrelativepath" : "../code",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
 				"name" : "SyncAudioAgent.maxpat",
-				"bootpath" : "~/Documents/Repositories/sync_swarm_experiments/max/projects/audio_swarmalators/patchers",
+				"bootpath" : "~/Documents/PhD_RITMO/Repositories/sync_swarm_experiments/max/projects/audio_swarmalators/patchers",
 				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
@@ -9696,6 +9686,27 @@
 				"name" : "thru.maxpat",
 				"bootpath" : "C74:/patchers/m4l/Pluggo for Live resources/patches",
 				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "RhythmPatternsAudioAgent.maxpat",
+				"bootpath" : "~/Documents/PhD_RITMO/Repositories/sync_swarm_experiments/max/projects/audio_swarmalators/patchers",
+				"patcherrelativepath" : ".",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "EuclideanRhythmsGen.maxpat",
+				"bootpath" : "~/Documents/PhD_RITMO/Repositories/sync_swarm_experiments/max/projects/audio_swarmalators/patchers",
+				"patcherrelativepath" : ".",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "SyncAgentsExtractor.js",
+				"bootpath" : "~/Documents/PhD_RITMO/Repositories/sync_swarm_experiments/max/projects/audio_swarmalators/code",
+				"patcherrelativepath" : "../code",
+				"type" : "TEXT",
 				"implicit" : 1
 			}
  ],
