@@ -30,11 +30,17 @@ public class ManualSwarmalator : SyncAgent
         }
     }
 
-    private void Update() {
-        var pulse = Mathf.Sin(2 * Mathf.PI * _frequency * Time.time + Phase);
+    private void FixedUpdate() {
+        var pulse = Mathf.Sin(2 * Mathf.PI * _frequency * Time.fixedTime + Phase);
         pulse = pulse < 0 ? 1.0f : 0.0f;
         var color = Color.HSVToRGB(Mathf.InverseLerp(0, 2 * Mathf.PI, Phase), 1, 1);
         material_.color = Color.Lerp(color, Color.black, Mathf.InverseLerp(-1f, 1f, pulse));
+    }
+
+    void Update() {
+        var reference = MainSyncSwarm.Instance.reference;
+        Angle = Vector3.SignedAngle(trans_.position - reference.position, reference.right, reference.forward);
+        Angle = Angle < 0 ? Angle + 360.0f : Angle;
     }
 
     float _lastClickTime;

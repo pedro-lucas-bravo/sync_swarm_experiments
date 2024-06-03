@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -185,6 +186,22 @@ public class MainSyncSwarm : MonoBehaviour
                 agent.PopulateAgents();
             }
         }
+    }
+
+    private int _rhythmMode;
+    public Action<int> OnChangeRhythmMode { get; set; }
+
+    public void SetRhtymMode(int mode) {
+        _rhythmMode = mode;
+        OnChangeRhythmMode?.Invoke(mode);
+    }
+
+    private int _scaleID;
+    public Action<int> OnChangeScaleID { get; set; }
+
+    public void SetScaleID(int scaleID) {
+        _scaleID = scaleID;
+        OnChangeScaleID?.Invoke(scaleID);
     }
 
     

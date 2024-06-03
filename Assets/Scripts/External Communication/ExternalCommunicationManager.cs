@@ -27,6 +27,8 @@ public class ExternalCommunicationManager : MonoBehaviour
     public string resizeRecvAddress = "/resize"; // N to resize
     public string addManualRecvAddress = "/addmanual"; // N to add
     public string removeManualRecvAddress = "/removemanual"; // N to remove
+    public string rhythmModeRecvAddress = "/rhythm"; // N : 0 direct, 1: euclidean
+    public string scaleRecvAddress = "/scale"; // N : scale ID
 
     //[Header("Configurations")]
     //public int sleepMillisecondsOnReceiving = 0;
@@ -63,7 +65,8 @@ public class ExternalCommunicationManager : MonoBehaviour
         RemoveRecvAgent();
         AddManualRecvAgent();
         RemoveManualRecvAgent();
-
+        RhythmModeRecv();
+        ScaleRecv();
     }
 
     List<object> allAgentInfoOutMessage_;
@@ -159,6 +162,14 @@ public class ExternalCommunicationManager : MonoBehaviour
         if (address == resizeRecvAddress) {
             MainSyncSwarm.Instance.Size = (int)values[0];
         }
+        if (address == rhythmModeRecvAddress && !_RhythmModeFlag) {
+            _RhythmMode = (int)values[0];
+            _RhythmModeFlag = true;
+        }
+        if (address == scaleRecvAddress && !_ScaleFlag) {
+            _Scale = (int)values[0];
+            _ScaleFlag = true;
+        }
     }
 
     private bool _AddAgentFlag;
@@ -190,6 +201,24 @@ public class ExternalCommunicationManager : MonoBehaviour
         if (_RemoveManualAgentFlag) {
             MainSyncSwarm.Instance.Remove(1, true);
             _RemoveManualAgentFlag = false;
+        }
+    }
+
+    private bool _RhythmModeFlag;
+    private int _RhythmMode;
+    private void RhythmModeRecv() {
+        if (_RhythmModeFlag) {
+            MainSyncSwarm.Instance.SetRhtymMode(_RhythmMode);
+            _RhythmModeFlag = false;
+        }
+    }
+
+    private bool _ScaleFlag;
+    private int _Scale;
+    private void ScaleRecv() {
+        if (_ScaleFlag) {
+            MainSyncSwarm.Instance.SetScaleID(_Scale);
+            _ScaleFlag = false;
         }
     }
 
